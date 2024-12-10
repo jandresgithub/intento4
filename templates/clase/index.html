@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de clases{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Clases</title>
+</head>
+<body>
+    <h1>Listado de Clases</h1>
+    <a href="{{ url_for('clases.crear_clase') }}">Crear nueva clase</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clase in clases %}
+            <tr>
+                <td>{{ clase.id }}</td>
+                <td>{{ clase.nombre }}</td>
+                <td>{{ clase.descripcion }}</td>
+                <td>
+                    <a href="{{ url_for('clases.editar_clase', id=clase.id) }}">Editar</a>
+                    <form action="{{ url_for('clases.eliminar_clase', id=clase.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio - Sistema de Control de Asistencia{% endblock %}
+
+{% block content %}
+    <h1>Bienvenido al Sistema de Control de Asistencia</h1>
+    <p>Selecciona una de las siguientes opciones para comenzar:</p>
+
+    <ul>
+        <li><a href="{{ url_for('estudiantes.listar_estudiantes') }}">Estudiantes</a></li>
+        <li><a href="{{ url_for('asistencias.listar_asistencias') }}">Asistencias</a></li>
+        <li><a href="{{ url_for('clases.listar_clases') }}">Clases</a></li>
+        <li><a href="{{ url_for('reportes.reporte_general') }}">Reportes</a></li>
+    </ul>
+{% endblock %}

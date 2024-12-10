@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Estudiantes{% endblock %}
+
+{% block content %}
+    <h1>Lista de Asistencias</h1>
+    <a href="{{ url_for('asistencias.nueva_asistencia') }}">Registrar Asistencia</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Estudiante</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistencia in asistencias %}
+            <tr>
+                <td>{{ asistencia.id }}</td>
+                <td>{{ estudiantes[asistencia.estudiante_id] }}</td>
+                <td>{{ asistencia.fecha }}</td>
+                <td>{{ asistencia.estado }}</td>
+                <td>
+                    <a href="{{ url_for('asistencias.editar_asistencia', id=asistencia.id) }}">Editar</a>
+                    <form action="{{ url_for('asistencias.eliminar_asistencia', id=asistencia.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
